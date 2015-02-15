@@ -1,0 +1,113 @@
+---
+#  This is an example scene description for the raytracer framework created
+#  for the Computer Science course "Introduction to Computer Graphics"
+#  taught at the University of Groningen by Tobias Isenberg.
+#
+#  The scene description format we use is based on YAML, which is a human friendly
+#  data serialization standard. This gives us a flexible format which should be
+#  fairly easy to make both backward and forward compatible (i.e., by ignoring
+#  unknown directives). In addition parsers are available for many languages.
+#  See http://www.yaml.org/ for more information on YAML.
+#
+#  The example scene description should largely speak for itself. By now
+#  it should be clear that the #-character can be used to insert comments.
+
+Camera:
+    eye: [200,200,1000]
+    center: [200,200,0]
+    up: [0,2,0]
+    viewSize: [200,400]
+
+Shadows: true
+MaxRecursionDepth: 4
+SuperSampling:
+  factor: 2
+
+Lights:
+- position: [-200,600,1500]
+  color: [0.4,0.4,0.8]
+- position: [600,600,1500]
+  color: [0.8,0.8,0.4]
+
+Objects:
+- type: csg
+  operator: unite
+  left:
+    type: csg
+    operator: except
+    left:
+      type: csg
+      operator: except
+      left:
+        type: sphere
+        material:
+          color: [0.1,0.1,0.1]
+          ka: 0.1
+          kd: 0.2
+          ks: 0.1
+          n: 2
+          eta: 1.02
+        transformations:
+        - [scale, [100,150,100]]
+        - [translate, [0,220,0]]
+      right:
+        type: cylinder
+        material:
+          color: [0.1,0.1,0.1]
+          ka: 0.1
+          kd: 0.2
+          ks: 0.1
+          n: 2
+          eta: 1.02
+        transformations:
+        - [scale, [100,200,100]]
+        - [translate, [0,340,0]]
+    right:
+      type: sphere
+      material:
+        color: [0.1,0.1,0.1]
+        ka: 0.1
+        kd: 0.2
+        ks: 0.1
+        n: 2
+        eta: 1.02
+      transformations:
+      - [scale, [90,140,90]]
+      - [translate, [0,220,0]]
+  right:
+    type: csg
+    operator: unite
+    left:
+      type: cylinder
+      material:
+        color: [0.1,0.1,0.1]
+        ka: 0.1
+        kd: 0.2
+        ks: 0.1
+        n: 2
+        eta: 1.02
+      transformations:
+      - [scale, [10,200,10]]
+    right:
+      type: cylinder
+      material:
+        color: [0.1,0.1,0.1]
+        ka: 0.1
+        kd: 0.2
+        ks: 0.1
+        n: 2
+        eta: 1.02
+      transformations:
+      - [scale, [80,10,80]]
+      - [translate, [0,-100,0]]
+  transformations:
+  - [translate, [200,130,300]]
+- type: sphere
+  position: [200,200,-1000]
+  radius: 1000
+  material: # yellow
+    color: [0.4,0.4,0.0]
+    ka: 0.2
+    kd: 0.8
+    ks: 0
+    n: 1

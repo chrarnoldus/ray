@@ -1,0 +1,93 @@
+---
+#  This is an example scene description for the raytracer framework created
+#  for the Computer Science course "Introduction to Computer Graphics"
+#  taught at the University of Groningen by Tobias Isenberg.
+#
+#  The scene description format we use is based on YAML, which is a human friendly
+#  data serialization standard. This gives us a flexible format which should be
+#  fairly easy to make both backward and forward compatible (i.e., by ignoring
+#  unknown directives). In addition parsers are available for many languages.
+#  See http://www.yaml.org/ for more information on YAML.
+#
+#  The example scene description should largely speak for itself. By now
+#  it should be clear that the #-character can be used to insert comments.
+
+Eye: [200,200,1000]
+
+Lights:
+- position: [-200,600,1500]
+  color: [1.0,1.0,1.0]
+
+Background: [0.0,0.9,0.9]
+
+SuperSampling:
+  factor: 3
+
+Objects:
+- type: csg
+  operator: intersect
+  left:
+    type: sphere
+    radius: 50
+    material: # yellow
+      color: [0.5,0.4,0.0]
+      ka: 0.2
+      kd: 0.8
+      ks: 0.0
+      n: 1
+    transformations:
+    - [scale, [2,2,1]]
+  right:
+    type: csg
+    operator: unite
+    left:
+      type: cylinder
+      material: # blue
+        color: [0.0,0.0,1.0]
+        ka: 0.2
+        kd: 0.7
+        ks: 0.5
+        n: 64
+      transformations:
+      - [scale, [50, 200, 50]]
+      - [rotatez, 90]
+    right:
+      type: cylinder
+      material: # green
+        color: [0.0,1.0,0.0]
+        ka: 0.2
+        kd: 0.3
+        ks: 0.5
+        n: 8
+      transformations:
+      - [scale, [50, 200, 50]]
+  transformations:
+  - [rotatez, -30]
+  - [rotatex, 30]
+  - [translate, [200,250,200]]
+- type: csg
+  operator: except
+  left:
+    type: sphere
+    position: [10,10,0]
+    radius: 50
+    material: # red
+      color: [1.0,0.0,0.0]
+      ka: 0.2
+      kd: 0.7
+      ks: 0.8
+      n: 32
+  right:
+    type: sphere
+    position: [-10,-10,0]
+    radius: 50
+    material: # orange
+      color: [1.0,0.5,0.0]
+      ka: 0.2
+      kd: 0.8
+      ks: 0.5
+      n: 32
+  transformations:
+  - [rotatez, 90]
+  - [rotatex, -30]
+  - [translate, [150,100,200]]
