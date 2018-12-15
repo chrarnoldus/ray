@@ -1,1 +1,1 @@
-@..\bin\release\Ray.exe %1
+@dotnet ..\bin\Release\netcoreapp2.2\Ray.dll %1

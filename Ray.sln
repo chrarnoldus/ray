@@ -1,20 +1,25 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ray", "Ray\Ray.csproj", "{2DEFFC99-C0D6-4BA7-A441-8465959B8F0F}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28407.52
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray", "Ray\Ray.csproj", "{046E8602-3A0D-410E-BA3C-46794E93FDBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x86 = Debug|x86
-		Release|x86 = Release|x86
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2DEFFC99-C0D6-4BA7-A441-8465959B8F0F}.Debug|x86.ActiveCfg = Debug|x86
-		{2DEFFC99-C0D6-4BA7-A441-8465959B8F0F}.Debug|x86.Build.0 = Debug|x86
-		{2DEFFC99-C0D6-4BA7-A441-8465959B8F0F}.Release|x86.ActiveCfg = Release|x86
-		{2DEFFC99-C0D6-4BA7-A441-8465959B8F0F}.Release|x86.Build.0 = Release|x86
+		{046E8602-3A0D-410E-BA3C-46794E93FDBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{046E8602-3A0D-410E-BA3C-46794E93FDBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{046E8602-3A0D-410E-BA3C-46794E93FDBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{046E8602-3A0D-410E-BA3C-46794E93FDBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B61A73BD-3ACD-4F1B-AF6D-B25C09C96295}
 	EndGlobalSection
 EndGlobal
