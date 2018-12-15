@@ -191,3 +191,5 @@ ModelManifest.xml
 # Render results
 *.png
 Thumbs.db
+
+.vs
