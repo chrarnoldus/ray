@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 
 namespace Ray
 {
     struct Vector
     {
-        readonly double x, y, z;
-
         public Vector(double xyz)
             : this(xyz, xyz, xyz)
         {
@@ -14,39 +12,30 @@ namespace Ray
 
         public Vector(double x, double y, double z)
         {
-            this.x = x;
-            this.y = y;
-            this.z = z;
+            X = x;
+            Y = y;
+            Z = z;
         }
 
-        public double X
-        {
-            get { return x; }
-        }
+        public double X { get; }
 
-        public double Y
-        {
-            get { return y; }
-        }
+        public double Y { get; }
 
-        public double Z
-        {
-            get { return z; }
-        }
+        public double Z { get; }
 
         public double R
         {
-            get { return x; }
+            get { return X; }
         }
 
         public double G
         {
-            get { return y; }
+            get { return Y; }
         }
 
         public double B
         {
-            get { return z; }
+            get { return Z; }
         }
 
         public double this[int i]
@@ -56,11 +45,11 @@ namespace Ray
                 switch (i)
                 {
                     case 0:
-                        return x;
+                        return X;
                     case 1:
-                        return y;
+                        return Y;
                     case 2:
-                        return z;
+                        return Z;
                     default:
                         throw new IndexOutOfRangeException();
                 }
@@ -70,9 +59,9 @@ namespace Ray
         public Vector Add(Vector other)
         {
             return new Vector(
-                x + other.x,
-                y + other.y,
-                z + other.z);
+                X + other.X,
+                Y + other.Y,
+                Z + other.Z);
         }
 
         public static Vector operator +(Vector a, Vector b)
@@ -83,9 +72,9 @@ namespace Ray
         public Vector Subtract(Vector other)
         {
             return new Vector(
-                x - other.x,
-                y - other.y,
-                z - other.z);
+                X - other.X,
+                Y - other.Y,
+                Z - other.Z);
         }
 
         public static Vector operator -(Vector a, Vector b)
@@ -101,17 +90,17 @@ namespace Ray
         public Vector Multiply(Vector other)
         {
             return new Vector(
-                x * other.x,
-                y * other.y,
-                z * other.z);
+                X * other.X,
+                Y * other.Y,
+                Z * other.Z);
         }
 
         public Vector Multiply(double multiplier)
         {
             return new Vector(
-                x * multiplier,
-                y * multiplier,
-                z * multiplier);
+                X * multiplier,
+                Y * multiplier,
+                Z * multiplier);
         }
 
         public static Vector operator *(Vector a, Vector b)
@@ -132,17 +121,17 @@ namespace Ray
         public Vector Divide(Vector other)
         {
             return new Vector(
-                x / other.x,
-                y / other.y,
-                z / other.z);
+                X / other.X,
+                Y / other.Y,
+                Z / other.Z);
         }
 
         public Vector Divide(double divisor)
         {
             return new Vector(
-                x / divisor,
-                y / divisor,
-                z / divisor);
+                X / divisor,
+                Y / divisor,
+                Z / divisor);
         }
 
         public static Vector operator /(Vector a, Vector b)
@@ -157,15 +146,15 @@ namespace Ray
 
         public double Dot(Vector other)
         {
-            return x * other.x + y * other.y + z * other.z;
+            return X * other.X + Y * other.Y + Z * other.Z;
         }
 
         public Vector Cross(Vector other)
         {
             return new Vector(
-                y * other.z - z * other.y,
-                z * other.x - x * other.z,
-                x * other.y - y * other.x);
+                Y * other.Z - Z * other.Y,
+                Z * other.X - X * other.Z,
+                X * other.Y - Y * other.X);
         }
 
         public Vector Reflect(Vector normal)
@@ -175,7 +164,7 @@ namespace Ray
 
         public double LengthSquared()
         {
-            return x * x + y * y + z * z;
+            return X * X + Y * Y + Z * Z;
         }
 
         public double Length()
@@ -196,9 +185,9 @@ namespace Ray
         public Vector Clamp(double min = 0.0, double max = 1.0)
         {
             return new Vector(
-                Math.Max(Math.Min(x, max), min),
-                Math.Max(Math.Min(y, max), min),
-                Math.Max(Math.Min(z, max), min));
+                Math.Max(Math.Min(X, max), min),
+                Math.Max(Math.Min(Y, max), min),
+                Math.Max(Math.Min(Z, max), min));
         }
 
         public Vector Rotate(Vector rotation, Angle angle)

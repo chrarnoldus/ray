@@ -1,33 +1,21 @@
-﻿using System;
+using System;
 
 namespace Ray
 {
     sealed class Hatch
     {
-        readonly Vector normal;
-        readonly double distance, weight;
-
         public Hatch(Vector normal, double distance, double weight)
         {
-            this.normal = normal.Normalize();
-            this.distance = distance;
-            this.weight = weight;
+            Normal = normal.Normalize();
+            Distance = distance;
+            Weight = weight;
         }
 
-        public Vector Normal
-        {
-            get { return normal; }
-        }
+        public Vector Normal { get; }
 
-        public double Distance
-        {
-            get { return distance; }
-        }
+        public double Distance { get; }
 
-        public double Weight
-        {
-            get { return weight; }
-        }
+        public double Weight { get; }
     }
 
     // Based on:

@@ -1,13 +1,9 @@
-﻿using System;
+using System;
 
 namespace Ray
 {
     sealed class Material
     {
-        readonly Vector ambientColor, diffuseColor, specularColor;
-
-        readonly int shininess;
-
         readonly double? refraction, reflectance;
 
         readonly Image texture;
@@ -22,11 +18,11 @@ namespace Ray
         public Material(Vector ambientColor, Vector diffuseColor, Vector specularColor, int shininess,
             double? refraction = null, string textureName = null)
         {
-            this.ambientColor = ambientColor;
-            this.diffuseColor = diffuseColor;
-            this.specularColor = specularColor;
+            AmbientColor = ambientColor;
+            DiffuseColor = diffuseColor;
+            SpecularColor = specularColor;
 
-            this.shininess = shininess;
+            Shininess = shininess;
             this.refraction = refraction;
 
             if (refraction.HasValue)
@@ -42,36 +38,24 @@ namespace Ray
                 texture = Image.Read(textureName);
         }
 
-        public Vector AmbientColor
-        {
-            get { return ambientColor; }
-        }
+        public Vector AmbientColor { get; }
 
-        public Vector DiffuseColor
-        {
-            get { return diffuseColor; }
-        }
+        public Vector DiffuseColor { get; }
 
         public bool IsReflective
         {
             get
             {
                 return
-                    specularColor.R != 0.0 ||
-                    specularColor.G != 0.0 ||
-                    specularColor.B != 0.0;
+                    SpecularColor.R != 0.0 ||
+                    SpecularColor.G != 0.0 ||
+                    SpecularColor.B != 0.0;
             }
         }
 
-        public Vector SpecularColor
-        {
-            get { return specularColor; }
-        }
+        public Vector SpecularColor { get; }
 
-        public int Shininess
-        {
-            get { return shininess; }
-        }
+        public int Shininess { get; }
 
         public bool IsTransparant
         {

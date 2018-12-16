@@ -1,36 +1,22 @@
-﻿namespace Ray
+namespace Ray
 {
     struct GoochParameters
     {
-        readonly double blue, yellow, alpha, beta;
-
         public GoochParameters(double blue, double yellow, double alpha, double beta)
         {
-            this.blue = blue;
-            this.yellow = yellow;
-            this.alpha = alpha;
-            this.beta = beta;
+            Blue = blue;
+            Yellow = yellow;
+            Alpha = alpha;
+            Beta = beta;
         }
 
-        public double Blue
-        {
-            get { return blue; }
-        }
+        public double Blue { get; }
 
-        public double Yellow
-        {
-            get { return yellow; }
-        }
+        public double Yellow { get; }
 
-        public double Alpha
-        {
-            get { return alpha; }
-        }
+        public double Alpha { get; }
 
-        public double Beta
-        {
-            get { return beta; }
-        }
+        public double Beta { get; }
     }
 
     sealed class GoochRenderMode : RenderMode

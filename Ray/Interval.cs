@@ -1,28 +1,23 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Ray
 {
     abstract class Interval : IEnumerable<Hit>
     {
-        readonly List<Hit> hits = new List<Hit>();
-
         public abstract bool Contains(Hit hit);
 
         public IEnumerator<Hit> GetEnumerator()
         {
-            return hits.GetEnumerator();
+            return Hits.GetEnumerator();
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
-            return hits.GetEnumerator();
+            return Hits.GetEnumerator();
         }
 
-        protected List<Hit> Hits
-        {
-            get { return hits; }
-        }
+        protected List<Hit> Hits { get; } = new List<Hit>();
 
         sealed class SimpleInterval : Interval
         {

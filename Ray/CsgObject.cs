@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Ray
@@ -32,18 +32,9 @@ namespace Ray
         public CsgObject(Object left, Object right, CsgOperator csgOperator, IEnumerable<Matrix> transformations = null)
             : base(transformations: transformations)
         {
-            if (left == null)
-                throw new ArgumentNullException("left");
-
-            if (right == null)
-                throw new ArgumentNullException("right");
-
-            if (csgOperator == null)
-                throw new ArgumentNullException("csgOperator");
-
-            this.left = left;
-            this.right = right;
-            this.csgOperator = csgOperator;
+            this.left = left ?? throw new ArgumentNullException("left");
+            this.right = right ?? throw new ArgumentNullException("right");
+            this.csgOperator = csgOperator ?? throw new ArgumentNullException("csgOperator");
         }
 
         protected override IEnumerable<Hit> IntersectTransformed(Ray ray)

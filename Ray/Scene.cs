@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,10 +7,6 @@ namespace Ray
 {
     sealed class Scene
     {
-        readonly List<Light> lights = new List<Light>();
-
-        readonly List<Object> objects = new List<Object>();
-
         public Vector Retrace(Hit hit, Vector direction, int recursionDepth)
         {
             if (recursionDepth >= MaxRecursionDepth)
@@ -22,7 +18,7 @@ namespace Ray
 
         Vector Trace(Ray ray, int recursionDepth = 0)
         {
-            Hit minHit = objects
+            Hit minHit = Objects
                 .SelectMany(obj => obj.Intersect(ray))
                 .Where(hit => hit.Time >= Hit.TimeEpsilon)
                 .Min();
@@ -81,15 +77,9 @@ namespace Ray
             return image;
         }
 
-        public List<Light> Lights
-        {
-            get { return lights; }
-        }
+        public List<Light> Lights { get; } = new List<Light>();
 
-        public List<Object> Objects
-        {
-            get { return objects; }
-        }
+        public List<Object> Objects { get; } = new List<Object>();
 
         public Vector BackgroundColor
         {

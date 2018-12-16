@@ -1,27 +1,19 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Drawing.Imaging;
 
 namespace Ray
 {
     struct UV
     {
-        readonly double u, v;
-
         public UV(double u, double v)
         {
-            this.u = u;
-            this.v = v;
+            U = u;
+            V = v;
         }
 
-        public double U
-        {
-            get { return u; }
-        }
+        public double U { get; }
 
-        public double V
-        {
-            get { return v; }
-        }
+        public double V { get; }
     }
 
     sealed class Image

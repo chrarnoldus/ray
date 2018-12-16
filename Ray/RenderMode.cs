@@ -1,27 +1,22 @@
-﻿using System;
+using System;
 using System.Linq;
 
 namespace Ray
 {
     abstract class RenderMode
     {
-        readonly Scene scene;
-
         protected RenderMode(Scene scene)
         {
-            if (scene == null)
-                throw new ArgumentNullException("scene");
-
-            this.scene = scene;
+            Scene = scene ?? throw new ArgumentNullException("scene");
         }
 
         protected bool IsLightBlocked(Object obj, Light light, Vector position)
         {
-            if (!scene.Shadows) return false;
+            if (!Scene.Shadows) return false;
 
             Ray ray = new Ray(light.Position, (position - light.Position).Normalize());
 
-            Hit minHit = scene.Objects
+            Hit minHit = Scene.Objects
                 .SelectMany(other => other.Intersect(ray))
                 .Where(hit => hit.Time >= Hit.TimeEpsilon)
                 .Min();
@@ -107,10 +102,7 @@ namespace Ray
 
         public abstract Vector CalculateColor(Hit hit, int recursionDepth);
 
-        protected Scene Scene
-        {
-            get { return scene; }
-        }
+        protected Scene Scene { get; }
     }
 
     sealed class NullRenderMode : RenderMode

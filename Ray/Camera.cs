@@ -7,10 +7,6 @@ namespace Ray
     // http://www-graphics.stanford.edu/courses/cs348b-99/viewgeom.html
     sealed class Camera
     {
-        readonly Vector eye, center, up;
-
-        readonly int viewWidth, viewHeight;
-
         readonly Vector H, V;
 
         public Camera(Vector eye)
@@ -31,13 +27,13 @@ namespace Ray
 
             if (viewHeight < 0)
                 throw new ArgumentOutOfRangeException("viewHeight");
-            
-            this.eye = eye;
-            this.center = center;
-            this.up = up;
 
-            this.viewWidth = viewWidth;
-            this.viewHeight = viewHeight;
+            Eye = eye;
+            Center = center;
+            Up = up;
+
+            ViewWidth = viewWidth;
+            ViewHeight = viewHeight;
 
             Vector G = center - eye;
             Vector A = G.Cross(up), B = A.Cross(G);
@@ -48,35 +44,20 @@ namespace Ray
 
         public Ray CalculateRay(double x, double y)
         {
-            double sx = x / (viewWidth - 1), sy = y / (viewHeight - 1);
-            Vector pixel = center + (2 * sx - 1) * H + (1 - 2 * sy) * V;
+            double sx = x / (ViewWidth - 1), sy = y / (ViewHeight - 1);
+            Vector pixel = Center + (2 * sx - 1) * H + (1 - 2 * sy) * V;
 
-            return new Ray(eye, (pixel - eye).Normalize());
+            return new Ray(Eye, (pixel - Eye).Normalize());
         }
 
-        public Vector Eye
-        {
-            get { return eye; }
-        }
+        public Vector Eye { get; }
 
-        public Vector Center
-        {
-            get { return center; }
-        }
+        public Vector Center { get; }
 
-        public Vector Up
-        {
-            get { return up; }
-        }
+        public Vector Up { get; }
 
-        public int ViewWidth
-        {
-            get { return viewWidth; }
-        }
+        public int ViewWidth { get; }
 
-        public int ViewHeight
-        {
-            get { return viewHeight; }
-        }
+        public int ViewHeight { get; }
     }
 }
