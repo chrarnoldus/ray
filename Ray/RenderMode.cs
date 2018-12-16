@@ -114,8 +114,6 @@ namespace Ray
         }
 
         public override Vector CalculateColor(Hit hit, int recursionDepth)
-        {
-            return Scene.BackgroundColor;
-        }
+            => Scene.BackgroundColor;
     }
 }

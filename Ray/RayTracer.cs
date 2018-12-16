@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -61,32 +61,22 @@ namespace Ray
         }
 
         int ParseSupersamplingFactor(YamlNode node)
-        {
-            return node.GetChild("factor").ParseInt32();
-        }
+            => node.GetChild("factor").ParseInt32();
 
         Light ParseLight(YamlNode node)
-        {
-            Light light = new Light(
+            => new Light(
                 position: node.GetChild("position").ParseVector(),
                 color: node.GetChild("color").ParseVector());
 
-            return light;
-        }
-
         Material ParseMaterial(YamlNode node)
-        {
-            Material material = new Material(
+            => new Material(
                 color: node.TryParseChild("color", YamlExtensions.ParseVector, Vector.AllOne),
                 ambient: node.GetChild("ka").ParseDouble(),
                 diffuse: node.GetChild("kd").ParseDouble(),
                 specular: node.GetChild("ks").ParseDouble(),
                 shininess: node.GetChild("n").ParseInt32(),
-                refraction: node.TryParseChild<double?>("eta", etaNode => etaNode.ParseDouble()),
+                refraction: node.TryParseChild("eta", (Func<YamlNode, double?>)(etaNode => etaNode.ParseDouble())),
                 textureName: node.TryParseChild("texture", YamlExtensions.GetValue));
-
-            return material;
-        }
 
         IEnumerable<Hatch> ParseHatches(YamlNode node)
         {
@@ -159,13 +149,11 @@ namespace Ray
         }
 
         GoochParameters ParseGoochParameters(YamlNode node)
-        {
-            return new GoochParameters(
+            => new GoochParameters(
                 blue: node.GetChild("b").ParseDouble(),
                 yellow: node.GetChild("y").ParseDouble(),
                 alpha: node.GetChild("alpha").ParseDouble(),
                 beta: node.GetChild("beta").ParseDouble());
-        }
 
         RenderMode ParseRenderMode(YamlNode renderModeNode)
         {

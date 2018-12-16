@@ -11,8 +11,8 @@ namespace Ray
 
         protected Object(Material material = null, IEnumerable<Matrix> transformations = null, IEnumerable<Hatch> hatches = null)
         {
-            this.Material = material;
-            this.Hatches = (hatches ?? Enumerable.Empty<Hatch>()).ToList().AsReadOnly();
+            Material = material;
+            Hatches = (hatches ?? Enumerable.Empty<Hatch>()).ToList().AsReadOnly();
 
             transformation = (transformations ?? Enumerable.Empty<Matrix>()).Aggregate(Matrix.Identity, (a, b) => a * b);
             transposed = transformation.Transpose();
@@ -28,9 +28,7 @@ namespace Ray
         protected abstract IEnumerable<Hit> IntersectTransformed(Ray ray);
 
         public virtual UV MapTexture(Vector position)
-        {
-            throw new NotSupportedException(GetType().Name + " does not support texture mapping.");
-        }
+            => throw new NotSupportedException(GetType().Name + " does not support texture mapping.");
 
         public ReadOnlyCollection<Hatch> Hatches { get; }
 

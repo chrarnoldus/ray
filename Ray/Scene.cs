@@ -81,40 +81,16 @@ namespace Ray
 
         public List<Object> Objects { get; } = new List<Object>();
 
-        public Vector BackgroundColor
-        {
-            get;
-            set;
-        }
+        public Vector BackgroundColor { get; set; }
 
-        public Camera Camera
-        {
-            get;
-            set;
-        }
+        public Camera Camera { get; set; }
 
-        public RenderMode RenderMode
-        {
-            get;
-            set;
-        }
+        public RenderMode RenderMode { get; set; }
 
-        public bool Shadows
-        {
-            get;
-            set;
-        }
+        public bool Shadows { get; set; }
 
-        public int MaxRecursionDepth
-        {
-            get;
-            set;
-        }
+        public int MaxRecursionDepth { get; set; }
 
-        public int SupersamplingFactor
-        {
-            get;
-            set;
-        }
+        public int SupersamplingFactor { get; set; }
     }
 }

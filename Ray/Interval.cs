@@ -8,14 +8,10 @@ namespace Ray
         public abstract bool Contains(Hit hit);
 
         public IEnumerator<Hit> GetEnumerator()
-        {
-            return Hits.GetEnumerator();
-        }
+            => Hits.GetEnumerator();
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return Hits.GetEnumerator();
-        }
+            => Hits.GetEnumerator();
 
         protected List<Hit> Hits { get; } = new List<Hit>();
 
@@ -41,15 +37,11 @@ namespace Ray
             }
 
             public override bool Contains(Hit hit)
-            {
-                return hit.Time >= min && hit.Time <= max;
-            }
+                => hit.Time >= min && hit.Time <= max;
         }
 
         public static Interval FromHits(IEnumerable<Hit> hits)
-        {
-            return hits as Interval ?? new SimpleInterval(hits);
-        }
+            => hits as Interval ?? new SimpleInterval(hits);
     }
 
     sealed class IntervalUnion : Interval
@@ -76,9 +68,7 @@ namespace Ray
         }
 
         public override bool Contains(Hit hit)
-        {
-            return left.Contains(hit) || right.Contains(hit);
-        }
+            => left.Contains(hit) || right.Contains(hit);
     }
 
     sealed class IntervalIntersection : Interval
@@ -104,9 +94,7 @@ namespace Ray
         }
 
         public override bool Contains(Hit hit)
-        {
-            return left.Contains(hit) && right.Contains(hit);
-        }
+            => left.Contains(hit) && right.Contains(hit);
     }
 
     sealed class IntervalDifference : Interval
@@ -133,8 +121,6 @@ namespace Ray
         }
 
         public override bool Contains(Hit hit)
-        {
-            return left.Contains(hit) && !right.Contains(hit);
-        }
+            => left.Contains(hit) && !right.Contains(hit);
     }
 }

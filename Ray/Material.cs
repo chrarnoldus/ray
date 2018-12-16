@@ -58,29 +58,19 @@ namespace Ray
         public int Shininess { get; }
 
         public bool IsTransparant
-        {
-            get { return refraction.HasValue; }
-        }
+            => refraction.HasValue;
 
         public double Refraction
-        {
-            get { return refraction.Value; }
-        }
+            => refraction.Value;
 
         public double Reflectance
-        {
-            get { return reflectance.Value; }
-        }
+            => reflectance.Value;
 
         public bool IsTextured
-        {
-            get { return texture != null; }
-        }
+            => texture != null;
 
         public Vector GetTextureColor(UV? coordinates)
-        {
-            return texture != null && coordinates.HasValue
+            => texture != null && coordinates.HasValue
                 ? texture[coordinates.Value] : Vector.AllOne;
-        }
     }
 }

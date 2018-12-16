@@ -8,19 +8,13 @@ namespace Ray
     static class CsgOperators
     {
         public static IEnumerable<Hit> Unite(IEnumerable<Hit> leftHits, IEnumerable<Hit> rightHits)
-        {
-            return new IntervalUnion(Interval.FromHits(leftHits), Interval.FromHits(rightHits));
-        }
+            => new IntervalUnion(Interval.FromHits(leftHits), Interval.FromHits(rightHits));
 
         public static IEnumerable<Hit> Intersect(IEnumerable<Hit> leftHits, IEnumerable<Hit> rightHits)
-        {
-            return new IntervalIntersection(Interval.FromHits(leftHits), Interval.FromHits(rightHits));
-        }
+            => new IntervalIntersection(Interval.FromHits(leftHits), Interval.FromHits(rightHits));
 
         public static IEnumerable<Hit> Except(IEnumerable<Hit> leftHits, IEnumerable<Hit> rightHits)
-        {
-            return new IntervalDifference(Interval.FromHits(leftHits), Interval.FromHits(rightHits));
-        }
+            => new IntervalDifference(Interval.FromHits(leftHits), Interval.FromHits(rightHits));
     }
 
     sealed class CsgObject : Object
@@ -38,8 +32,6 @@ namespace Ray
         }
 
         protected override IEnumerable<Hit> IntersectTransformed(Ray ray)
-        {
-            return csgOperator(left.Intersect(ray), right.Intersect(ray));
-        }
+            => csgOperator(left.Intersect(ray), right.Intersect(ray));
     }
 }

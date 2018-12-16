@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -28,18 +28,13 @@ namespace Ray
         }
 
         static IEnumerable<string[]> ReadTokensPerLine(string fileName)
-        {
-            return File.ReadAllLines(fileName).Select(line =>
-                line.Split(null as string[], StringSplitOptions.RemoveEmptyEntries));
-        }
+            => File.ReadAllLines(fileName).Select(line => line.Split(null as string[], StringSplitOptions.RemoveEmptyEntries));
 
         static Vector ParseVector(string[] tokens)
-        {
-            return new Vector(
+            => new Vector(
                 double.Parse(tokens[1], CultureInfo.InvariantCulture),
                 double.Parse(tokens[2], CultureInfo.InvariantCulture),
                 double.Parse(tokens[3], CultureInfo.InvariantCulture));
-        }
 
         List<Vector> vertices;
         List<ObjFace> faces;
@@ -90,21 +85,20 @@ namespace Ray
         struct ObjFace
         {
             readonly int index1, index2, index3;
-            readonly Material material;
 
             public ObjFace(int index1, int index2, int index3, Material material)
             {
                 this.index1 = index1;
                 this.index2 = index3;
                 this.index3 = index2;
-                this.material = material;
+                this.Material = material;
             }
 
             public int Index1 { get { return index1; } }
             public int Index2 { get { return index2; } }
             public int Index3 { get { return index3; } }
 
-            public Material Material { get { return material; } }
+            public Material Material { get; }
         }
 
         IEnumerable<ObjFace> ReadFaces()
@@ -139,19 +133,17 @@ namespace Ray
 
         struct ObjMaterial
         {
-            readonly string name;
-
             public ObjMaterial(string name)
                 : this()
             {
                 if (string.IsNullOrEmpty(name))
                     throw new ArgumentNullException("name");
 
-                this.name = name;
+                this.Name = name;
             }
 
-            public string Name { get { return name; } }
-            public bool IsNamed { get { return name != null; } }
+            public string Name { get; }
+            public bool IsNamed { get { return Name != null; } }
 
             public Vector AmbientColor { get; set; }
             public Vector DiffuseColor { get; set; }
@@ -160,9 +152,7 @@ namespace Ray
             public int Shininess { get; set; }
 
             public Material ToMaterial()
-            {
-                return new Material(AmbientColor, DiffuseColor, SpecularColor, Shininess);
-            }
+                => new Material(AmbientColor, DiffuseColor, SpecularColor, Shininess);
         }
 
         static Dictionary<string, Material> ReadMaterials(string fileName)

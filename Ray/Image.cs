@@ -26,14 +26,10 @@ namespace Ray
         }
 
         public int Width
-        {
-            get { return pixels.GetLength(0); }
-        }
+            => pixels.GetLength(0);
 
         public int Height
-        {
-            get { return pixels.GetLength(1); }
-        }
+            => pixels.GetLength(1);
 
         public Vector this[int x, int y]
         {

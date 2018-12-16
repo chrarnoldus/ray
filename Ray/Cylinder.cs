@@ -13,9 +13,7 @@ namespace Ray
         }
 
         Vector CalculateNormal(Vector position)
-        {
-            return position - new Vector(0.0, position.Y, 0.0);
-        }
+            => position - new Vector(0.0, position.Y, 0.0);
 
         IEnumerable<Hit> IntersectSides(Ray ray)
         {

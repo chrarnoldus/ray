@@ -11,16 +11,12 @@ namespace Ray
         }
 
         public Vector At(double time)
-        {
-            return Origin + time * Direction;
-        }
+            => Origin + time * Direction;
 
         public Ray Transform(Matrix transformation)
-        {
-            return new Ray(
+            => new Ray(
                 transformation.Multiply(Origin, 1.0),
                 transformation.Multiply(Direction));
-        }
 
         public Vector Origin { get; }
 
@@ -68,18 +64,12 @@ namespace Ray
         public UV? TextureCoordinates { get; }
 
         public int CompareTo(Hit other)
-        {
-            return Time.CompareTo(other.Time);
-        }
+            => Time.CompareTo(other.Time);
 
         public Hit Transform(Vector normal)
-        {
-            return new Hit(Time, normal, Ray, Object, TextureCoordinates);
-        }
+            => new Hit(Time, normal, Ray, Object, TextureCoordinates);
 
         public Hit Transform(Vector normal, Ray ray)
-        {
-            return new Hit(Time, normal, ray, Object, TextureCoordinates);
-        }
+            => new Hit(Time, normal, ray, Object, TextureCoordinates);
     }
 }

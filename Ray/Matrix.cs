@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Ray
 {
@@ -46,9 +46,7 @@ namespace Ray
         }
 
         public static Matrix operator *(Matrix a, Matrix b)
-        {
-            return a.Multiply(b);
-        }
+            => a.Multiply(b);
 
         public Matrix Transpose()
         {
@@ -126,17 +124,12 @@ namespace Ray
             });
         }
 
-        static readonly Matrix identity = new Matrix(new double[4, 4]
+        public static Matrix Identity { get; } = new Matrix(new double[4, 4]
             {
                 { 1.0, 0.0, 0.0, 0.0 },
                 { 0.0, 1.0, 0.0, 0.0 },
                 { 0.0, 0.0, 1.0, 0.0 },
                 { 0.0, 0.0, 0.0, 1.0 },
             });
-
-        public static Matrix Identity
-        {
-            get { return identity; }
-        }
     }
 }
