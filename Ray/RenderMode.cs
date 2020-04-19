@@ -1,4 +1,3 @@
-#nullable disable
 using System;
 using System.Linq;
 
@@ -28,7 +27,7 @@ namespace Ray
 
         protected Vector CalculateSpecularColor(Hit hit, Vector lightColor, Vector lightDir)
         {
-            Material material = hit.Object.Material;
+            var material = hit.Object.Material ?? throw new Exception("Object requires material");
             Vector viewDir = -hit.Ray.Direction, reflectDir = lightDir.Reflect(hit.Normal);
 
             Vector color = material.SpecularColor * lightColor * Math.Pow(Math.Max(0.0, reflectDir.Dot(viewDir)), material.Shininess);
@@ -38,7 +37,7 @@ namespace Ray
 
         protected Vector CalculateReflectionColor(Hit hit, int recursionDepth)
         {
-            Material material = hit.Object.Material;
+            var material = hit.Object.Material ?? throw new Exception("Object requires material");
 
             if (material.IsReflective)
             {
@@ -64,7 +63,7 @@ namespace Ray
 
         protected Vector CalculateRefractionColor(Hit hit, int recursionDepth)
         {
-            Material material = hit.Object.Material;
+            var material = hit.Object.Material ?? throw new Exception("Object requires material");
 
             if (material.IsTransparant(out var materialRefraction, out var materialReflectance))
             {
@@ -77,7 +76,7 @@ namespace Ray
 
                 if (rayDir.Dot(normal) < 0.0)
                 {
-                    transmissionDir = Refract(rayDir, normal, materialRefraction).Value;
+                    transmissionDir = Refract(rayDir, normal, materialRefraction)!.Value;
                     incidence = -rayDir.Dot(normal);
                     intensity = 1.0;
                 }
