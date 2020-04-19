@@ -1,5 +1,6 @@
 bin
 obj
+**/Scenes/*.png
 *.Difference.png
 *.Unapproved.png
 Thumbs.db
