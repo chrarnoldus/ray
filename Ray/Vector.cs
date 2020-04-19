@@ -23,172 +23,110 @@ namespace Ray
 
         public double Z { get; }
 
-        public double R
-        {
-            get { return X; }
-        }
+        public double R => X;
 
-        public double G
-        {
-            get { return Y; }
-        }
+        public double G => Y;
 
-        public double B
-        {
-            get { return Z; }
-        }
+        public double B => Z;
 
         public double this[int i]
-        {
-            get
+            => i switch
             {
-                switch (i)
-                {
-                    case 0:
-                        return X;
-                    case 1:
-                        return Y;
-                    case 2:
-                        return Z;
-                    default:
-                        throw new IndexOutOfRangeException();
-                }
-            }
-        }
+                0 => X,
+                1 => Y,
+                2 => Z,
+                _ => throw new IndexOutOfRangeException(),
+            };
 
         public Vector Add(Vector other)
-        {
-            return new Vector(
+            => new Vector(
                 X + other.X,
                 Y + other.Y,
                 Z + other.Z);
-        }
 
         public static Vector operator +(Vector a, Vector b)
-        {
-            return a.Add(b);
-        }
+            => a.Add(b);
 
         public Vector Subtract(Vector other)
-        {
-            return new Vector(
+            => new Vector(
                 X - other.X,
                 Y - other.Y,
                 Z - other.Z);
-        }
 
         public static Vector operator -(Vector a, Vector b)
-        {
-            return a.Subtract(b);
-        }
+            => a.Subtract(b);
 
         public static Vector operator -(Vector vector)
-        {
-            return -1 * vector;
-        }
+            => -1 * vector;
 
         public Vector Multiply(Vector other)
-        {
-            return new Vector(
+            => new Vector(
                 X * other.X,
                 Y * other.Y,
                 Z * other.Z);
-        }
 
         public Vector Multiply(double multiplier)
-        {
-            return new Vector(
+            => new Vector(
                 X * multiplier,
                 Y * multiplier,
                 Z * multiplier);
-        }
 
         public static Vector operator *(Vector a, Vector b)
-        {
-            return a.Multiply(b);
-        }
+            => a.Multiply(b);
 
         public static Vector operator *(Vector a, double b)
-        {
-            return a.Multiply(b);
-        }
+            => a.Multiply(b);
 
         public static Vector operator *(double a, Vector b)
-        {
-            return b.Multiply(a);
-        }
+            => b.Multiply(a);
 
         public Vector Divide(Vector other)
-        {
-            return new Vector(
+            => new Vector(
                 X / other.X,
                 Y / other.Y,
                 Z / other.Z);
-        }
 
         public Vector Divide(double divisor)
-        {
-            return new Vector(
+            => new Vector(
                 X / divisor,
                 Y / divisor,
                 Z / divisor);
-        }
 
         public static Vector operator /(Vector a, Vector b)
-        {
-            return a.Divide(b);
-        }
+            => a.Divide(b);
 
         public static Vector operator /(Vector a, double b)
-        {
-            return a.Divide(b);
-        }
+            => a.Divide(b);
 
         public double Dot(Vector other)
-        {
-            return X * other.X + Y * other.Y + Z * other.Z;
-        }
+            => X * other.X + Y * other.Y + Z * other.Z;
 
         public Vector Cross(Vector other)
-        {
-            return new Vector(
+            => new Vector(
                 Y * other.Z - Z * other.Y,
                 Z * other.X - X * other.Z,
                 X * other.Y - Y * other.X);
-        }
 
         public Vector Reflect(Vector normal)
-        {
-            return -this + 2 * Dot(normal) * normal;
-        }
+            => -this + 2 * Dot(normal) * normal;
 
         public double LengthSquared()
-        {
-            return X * X + Y * Y + Z * Z;
-        }
+            => X * X + Y * Y + Z * Z;
 
         public double Length()
-        {
-            return Math.Sqrt(LengthSquared());
-        }
+            => Math.Sqrt(LengthSquared());
 
         public double Distance(Vector other)
-        {
-            return (this - other).Length();
-        }
+            => (this - other).Length();
 
         public Vector Normalize()
-        {
-            return this / Length();
-        }
+            => this / Length();
 
         public Vector Clamp(double min = 0.0, double max = 1.0)
-        {
-            return new Vector(
+            => new Vector(
                 Math.Max(Math.Min(X, max), min),
                 Math.Max(Math.Min(Y, max), min),
                 Math.Max(Math.Min(Z, max), min));
-        }
 
         public Vector Rotate(Vector rotation, Angle angle)
         {
@@ -203,29 +141,19 @@ namespace Ray
         }
 
         public static Vector AllZero
-        {
-            get { return new Vector(); }
-        }
+            => new Vector();
 
         public static Vector AllOne
-        {
-            get { return new Vector(1.0); }
-        }
+            => new Vector(1.0);
 
         public static Vector UnitX
-        {
-            get { return new Vector(1.0, 0.0, 0.0); }
-        }
+            => new Vector(1.0, 0.0, 0.0);
 
         public static Vector UnitY
-        {
-            get { return new Vector(0.0, 1.0, 0.0); }
-        }
+            => new Vector(0.0, 1.0, 0.0);
 
         public static Vector UnitZ
-        {
-            get { return new Vector(0.0, 0.0, 1.0); }
-        }
+            => new Vector(0.0, 0.0, 1.0);
     }
 
     struct Angle
@@ -238,23 +166,15 @@ namespace Ray
         }
 
         public double Degrees
-        {
-            get { return radians / Math.PI * 180.0; }
-        }
+            => radians / Math.PI * 180.0;
 
         public double Radians
-        {
-            get { return radians; }
-        }
+            => radians;
 
         public static Angle FromDegrees(double degrees)
-        {
-            return new Angle(degrees / 180.0 * Math.PI);
-        }
+            => new Angle(degrees / 180.0 * Math.PI);
 
         public static Angle FromRadians(double radians)
-        {
-            return new Angle(radians);
-        }
+            => new Angle(radians);
     }
 }
