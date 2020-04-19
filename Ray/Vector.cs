@@ -2,7 +2,7 @@ using System;
 
 namespace Ray
 {
-    struct Vector
+    public struct Vector
     {
         public Vector(double xyz)
             : this(xyz, xyz, xyz)
@@ -156,7 +156,7 @@ namespace Ray
             => new Vector(0.0, 0.0, 1.0);
     }
 
-    struct Angle
+    public struct Angle
     {
         readonly double radians;
 

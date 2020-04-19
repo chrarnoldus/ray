@@ -3,7 +3,7 @@ using System.Drawing.Imaging;
 
 namespace Ray
 {
-    struct UV
+    public struct UV
     {
         public UV(double u, double v)
         {
@@ -16,7 +16,7 @@ namespace Ray
         public double V { get; }
     }
 
-    sealed class Image
+    public sealed class Image
     {
         readonly Vector[,] pixels;
 
@@ -67,6 +67,22 @@ namespace Ray
 
                 bitmap.Save(fileName);
             }
+        }
+
+        public byte[] GetRgbData()
+        {
+            var rgbData = new byte[Width * Height * 3];
+            for (var x = 0; x < Width; x++)
+            {
+                for (var y = 0; y < Height; y++)
+                {
+                    var color = this[x, y];
+                    rgbData[3 * (Width * y + x) + 0] = (byte)(color.R * 255);
+                    rgbData[3 * (Width * y + x) + 1] = (byte)(color.G * 255);
+                    rgbData[3 * (Width * y + x) + 2] = (byte)(color.B * 255);
+                }
+            }
+            return rgbData;
         }
 
         public static Image Read(string fileName)

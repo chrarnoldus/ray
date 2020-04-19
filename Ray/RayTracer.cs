@@ -8,7 +8,7 @@ using YamlDotNet.RepresentationModel;
 
 namespace Ray
 {
-    sealed class RayTracer
+    public sealed class RayTracer
     {
         YamlNode doc;
 
@@ -252,6 +252,13 @@ namespace Ray
             image.Write(outputFileName);
 
             Console.WriteLine("Done.");
+        }
+
+        public static Image RenderSceneToImage(string inputFileName)
+        {
+            var rayTracer = new RayTracer();
+            rayTracer.ReadScene(inputFileName);
+            return rayTracer.scene.Render();
         }
 
         static void Main(string[] args)
