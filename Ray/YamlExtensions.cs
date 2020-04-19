@@ -1,4 +1,3 @@
-#nullable disable
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -9,7 +8,7 @@ namespace Ray
 {
     static class YamlExtensions
     {
-        public static string GetValue(this YamlNode node)
+        public static string? GetValue(this YamlNode node)
         {
             try
             {
@@ -21,10 +20,9 @@ namespace Ray
             }
         }
 
-        public static YamlNode TryGetChild(this YamlNode node, string key)
+        public static YamlNode? TryGetChild(this YamlNode node, string key)
         {
-            YamlNode child;
-            node.GetKeyedChildren().TryGetValue((YamlScalarNode)key, out child);
+            node.GetKeyedChildren().TryGetValue((YamlScalarNode)key, out var child);
             return child;
         }
 
@@ -66,7 +64,7 @@ namespace Ray
 
         public static T TryParseChild<T>(this YamlNode node, string key, Func<YamlNode, T> parser, T defaultValue = default(T))
         {
-            YamlNode child = node.TryGetChild(key);
+            var child = node.TryGetChild(key);
             return child != null ? parser(child) : defaultValue;
         }
 
@@ -74,7 +72,7 @@ namespace Ray
         {
             try
             {
-                return bool.Parse(((YamlScalarNode)node).Value);
+                return bool.Parse(((YamlScalarNode)node).Value!);
             }
             catch
             {
@@ -86,7 +84,7 @@ namespace Ray
         {
             try
             {
-                return double.Parse(((YamlScalarNode)node).Value, CultureInfo.InvariantCulture);
+                return double.Parse(((YamlScalarNode)node).Value!, CultureInfo.InvariantCulture);
             }
             catch
             {
@@ -98,7 +96,7 @@ namespace Ray
         {
             try
             {
-                return int.Parse(((YamlScalarNode)node).Value, CultureInfo.InvariantCulture);
+                return int.Parse(((YamlScalarNode)node).Value!, CultureInfo.InvariantCulture);
             }
             catch
             {
