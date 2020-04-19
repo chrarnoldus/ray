@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Ray
 {
@@ -12,7 +12,7 @@ namespace Ray
 
         public override Vector CalculateColor(Hit hit, int recursionDepth)
         {
-            Material material = hit.Object.Material;
+            var material = hit.Object.Material ?? throw new Exception("Object requires material");
 
             Vector position = hit.Position;
             Vector normal = hit.Normal;

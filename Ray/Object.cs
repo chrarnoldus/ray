@@ -1,4 +1,3 @@
-#nullable disable
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +9,7 @@ namespace Ray
     {
         readonly Matrix transformation, transposed;
 
-        protected Object(Material material = null, IEnumerable<Matrix> transformations = null, IEnumerable<Hatch> hatches = null)
+        protected Object(Material? material = null, IEnumerable<Matrix>? transformations = null, IEnumerable<Hatch>? hatches = null)
         {
             Material = material;
             Hatches = (hatches ?? Enumerable.Empty<Hatch>()).ToList().AsReadOnly();
@@ -33,6 +32,6 @@ namespace Ray
 
         public ReadOnlyCollection<Hatch> Hatches { get; }
 
-        public Material Material { get; }
+        public Material? Material { get; }
     }
 }
