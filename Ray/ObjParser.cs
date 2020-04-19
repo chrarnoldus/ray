@@ -1,4 +1,3 @@
-#nullable disable
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -14,11 +13,11 @@ namespace Ray
 
         readonly bool smooth;
         readonly Material defaultMaterial;
-        readonly IEnumerable<Matrix> transformations;
-        readonly IEnumerable<Hatch> hatches;
+        readonly IEnumerable<Matrix>? transformations;
+        readonly IEnumerable<Hatch>? hatches;
 
-        public ObjParser(string fileName, bool smooth = false, Material defaultMaterial = null,
-            IEnumerable<Matrix> transformations = null, IEnumerable<Hatch> hatches = null)
+        public ObjParser(string fileName, bool smooth, Material defaultMaterial,
+            IEnumerable<Matrix>? transformations = null, IEnumerable<Hatch>? hatches = null)
         {
             this.smooth = smooth;
             this.defaultMaterial = defaultMaterial;
@@ -37,9 +36,9 @@ namespace Ray
                 double.Parse(tokens[2], CultureInfo.InvariantCulture),
                 double.Parse(tokens[3], CultureInfo.InvariantCulture));
 
-        List<Vector> vertices;
-        List<ObjFace> faces;
-        List<Triangle> triangles;
+        List<Vector> vertices = new List<Vector>();
+        List<ObjFace> faces = new List<ObjFace>();
+        List<Triangle> triangles = new List<Triangle>();
 
         public Model ReadModel()
         {
@@ -87,7 +86,7 @@ namespace Ray
         {
             readonly int index1, index2, index3;
 
-            public ObjFace(int index1, int index2, int index3, Material material)
+            public ObjFace(int index1, int index2, int index3, Material? material)
             {
                 this.index1 = index1;
                 this.index2 = index3;
@@ -99,13 +98,13 @@ namespace Ray
             public int Index2 { get { return index2; } }
             public int Index3 { get { return index3; } }
 
-            public Material Material { get; }
+            public Material? Material { get; }
         }
 
         IEnumerable<ObjFace> ReadFaces()
         {
             Dictionary<string, Material> materials = new Dictionary<string, Material>();
-            Material currentMaterial = null;
+            Material? currentMaterial = null;
 
             foreach (string[] tokens in lines)
             {
