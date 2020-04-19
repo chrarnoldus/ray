@@ -1,4 +1,3 @@
-#nullable disable
 using System;
 using System.Collections.Generic;
 
@@ -6,7 +5,7 @@ namespace Ray
 {
     sealed class Cylinder : Object
     {
-        public Cylinder(Material material, IEnumerable<Matrix> transformations = null, IEnumerable<Hatch> hatches = null)
+        public Cylinder(Material material, IEnumerable<Matrix>? transformations = null, IEnumerable<Hatch>? hatches = null)
             : base(material, transformations, hatches)
         {
             if (material == null)
@@ -48,7 +47,7 @@ namespace Ray
                 yield return new Hit(t, CalculateNormal(position), ray, this);
         }
 
-        Hit IntersectCap(Ray ray, double y)
+        Hit? IntersectCap(Ray ray, double y)
         {
             double time = (y - ray.Origin.Y) / ray.Direction.Y;
 
@@ -65,11 +64,11 @@ namespace Ray
 
         protected override IEnumerable<Hit> IntersectTransformed(Ray ray)
         {
-            Hit withBottom = IntersectCap(ray, -0.5);
+            var withBottom = IntersectCap(ray, -0.5);
             if (withBottom != null)
                 yield return withBottom;
 
-            Hit withTop = IntersectCap(ray, 0.5);
+            var withTop = IntersectCap(ray, 0.5);
             if (withTop != null)
                 yield return withTop;
 
