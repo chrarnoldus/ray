@@ -89,7 +89,8 @@ namespace Ray
                         Tuple<Vector, Vector, Vector> vertexNormals = normalsPerTriangle[i];
                         yield return hit.Transform(InterpolateNormal(hit, vertexNormals));
                     }
-                    else yield return hit;
+                    else
+                        yield return hit;
                 }
             }
         }

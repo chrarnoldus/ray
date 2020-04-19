@@ -13,7 +13,8 @@ namespace Ray
 
         protected bool IsLightBlocked(Object obj, Light light, Vector position)
         {
-            if (!Scene.Shadows) return false;
+            if (!Scene.Shadows)
+                return false;
 
             Ray ray = new Ray(light.Position, (position - light.Position).Normalize());
 
@@ -55,7 +56,8 @@ namespace Ray
         {
             double underSqrt = 1.0 - (1.0 - Math.Pow(rayDir.Dot(normal), 2.0)) / Math.Pow(refraction, 2.0);
 
-            if (underSqrt < 0.0) return null;
+            if (underSqrt < 0.0)
+                return null;
 
             return (rayDir - normal * rayDir.Dot(normal)) / refraction - normal * Math.Sqrt(underSqrt);
         }

@@ -42,7 +42,8 @@ namespace Ray
             foreach (Light light in Scene.Lights)
             {
                 bool lightBlocked = IsLightBlocked(hit.Object, light, position);
-                if (lightBlocked) continue;
+                if (lightBlocked)
+                    continue;
 
                 Vector lightDir = (light.Position - position).Normalize();
                 Vector baseColor = light.Color * material.DiffuseColor *

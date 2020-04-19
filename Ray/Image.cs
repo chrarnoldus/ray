@@ -60,7 +60,7 @@ namespace Ray
 
                         bitmap.SetPixel(x, y, Color.FromArgb(
                             (int)(color.R * 255),
-                            (int)(color.G * 255), 
+                            (int)(color.G * 255),
                             (int)(color.B * 255)));
                     }
                 }
@@ -82,8 +82,8 @@ namespace Ray
                         Color color = bitmap.GetPixel(x, y);
 
                         image[x, y] = new Vector(
-                            color.R / 255.0, 
-                            color.G / 255.0, 
+                            color.R / 255.0,
+                            color.G / 255.0,
                             color.B / 255.0);
                     }
                 }

@@ -8,7 +8,7 @@ namespace Ray
     {
         public static double CalculateDiscriminant(double a, double b, double c)
         {
-            return b * b - (4.0 * a * c); ;
+            return b * b - (4.0 * a * c);
         }
 
         public static double SolveMin(double a, double b, double c, double d)
@@ -74,7 +74,8 @@ namespace Ray
             double theta = Math.Acos(relative.Z / radius);
             double phi = Math.Atan2(relative.Y, relative.X);
 
-            if (phi < 0.0) phi += 2.0 * Math.PI;
+            if (phi < 0.0)
+                phi += 2.0 * Math.PI;
 
             return new UV(
                 u: phi / (2.0 * Math.PI),
