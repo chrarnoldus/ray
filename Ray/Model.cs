@@ -1,4 +1,3 @@
-#nullable disable
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,7 +13,7 @@ namespace Ray
         readonly bool smooth;
 
         public Model(IEnumerable<Triangle> triangles, IEnumerable<Tuple<Vector, Vector, Vector>> normalsPerTriangle,
-            bool smooth = false, IEnumerable<Matrix> transformations = null)
+            bool smooth = false, IEnumerable<Matrix>? transformations = null)
             : base(transformations: transformations)
         {
             if (triangles == null)
