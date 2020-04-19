@@ -1,4 +1,3 @@
-#nullable disable
 using System;
 
 namespace Ray
@@ -40,7 +39,8 @@ namespace Ray
             Ray = ray;
             Object = obj ?? throw new ArgumentNullException(nameof(obj));
 
-            if (obj.Material.IsTextured)
+            var material = obj.Material ?? throw new Exception("Object requires material");
+            if (material.IsTextured)
                 TextureCoordinates = textureCoordinates ?? obj.MapTexture(Position);
         }
 
@@ -64,8 +64,8 @@ namespace Ray
 
         public UV? TextureCoordinates { get; }
 
-        public int CompareTo(Hit other)
-            => Time.CompareTo(other.Time);
+        public int CompareTo(Hit? other)
+            => other == null ? 1 : Time.CompareTo(other.Time);
 
         public Hit Transform(Vector normal)
             => new Hit(Time, normal, Ray, Object, TextureCoordinates);
