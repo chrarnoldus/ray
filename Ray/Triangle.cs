@@ -1,4 +1,3 @@
-#nullable disable
 using System;
 using System.Collections.Generic;
 
@@ -7,7 +6,7 @@ namespace Ray
     sealed class Triangle : Object
     {
         public Triangle(Material material, Vector vertexA, Vector vertexB, Vector vertexC,
-            IEnumerable<Matrix> transformations = null, IEnumerable<Hatch> hatches = null)
+            IEnumerable<Matrix>? transformations = null, IEnumerable<Hatch>? hatches = null)
             : base(material, transformations, hatches)
         {
             if (material == null)
