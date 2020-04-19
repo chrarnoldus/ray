@@ -1,4 +1,3 @@
-#nullable disable
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +26,7 @@ namespace Ray
             if (minHit == null)
                 return BackgroundColor;
 
-            return RenderMode.CalculateColor(minHit, recursionDepth);
+            return RenderMode!.CalculateColor(minHit, recursionDepth);
         }
 
         void RenderLine(Image image, int y)
@@ -46,7 +45,7 @@ namespace Ray
                         double sampleX = x + i * offset;
                         double sampleY = y + j * offset;
 
-                        Ray ray = Camera.CalculateRay(sampleX, sampleY);
+                        Ray ray = Camera!.CalculateRay(sampleX, sampleY);
                         Vector color = Trace(ray).Clamp();
 
                         average += color / samples;
@@ -84,9 +83,9 @@ namespace Ray
 
         public Vector BackgroundColor { get; set; }
 
-        public Camera Camera { get; set; }
+        public Camera? Camera { get; set; }
 
-        public RenderMode RenderMode { get; set; }
+        public RenderMode? RenderMode { get; set; }
 
         public bool Shadows { get; set; }
 
