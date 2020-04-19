@@ -27,9 +27,9 @@ namespace Ray
         public CsgObject(Object left, Object right, CsgOperator csgOperator, IEnumerable<Matrix> transformations = null)
             : base(transformations: transformations)
         {
-            this.left = left ?? throw new ArgumentNullException("left");
-            this.right = right ?? throw new ArgumentNullException("right");
-            this.csgOperator = csgOperator ?? throw new ArgumentNullException("csgOperator");
+            this.left = left ?? throw new ArgumentNullException(nameof(left));
+            this.right = right ?? throw new ArgumentNullException(nameof(right));
+            this.csgOperator = csgOperator ?? throw new ArgumentNullException(nameof(csgOperator));
         }
 
         protected override IEnumerable<Hit> IntersectTransformed(Ray ray)

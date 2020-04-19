@@ -32,7 +32,7 @@ namespace Ray
             : base(material, transformations, hatches)
         {
             if (material == null)
-                throw new ArgumentNullException("material");
+                throw new ArgumentNullException(nameof(material));
 
             this.position = position;
             this.radius = Math.Abs(radius);

@@ -138,7 +138,7 @@ namespace Ray
                 : this()
             {
                 if (string.IsNullOrEmpty(name))
-                    throw new ArgumentNullException("name");
+                    throw new ArgumentNullException(nameof(name));
 
                 this.Name = name;
             }

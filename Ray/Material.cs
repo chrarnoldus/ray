@@ -29,7 +29,7 @@ namespace Ray
             if (refraction.HasValue)
             {
                 if (refraction < 1.0)
-                    throw new ArgumentOutOfRangeException("refraction");
+                    throw new ArgumentOutOfRangeException(nameof(refraction));
 
                 reflectance = Math.Pow(refraction.Value - 1.0, 2.0)
                     / Math.Pow(refraction.Value + 1.0, 2.0);

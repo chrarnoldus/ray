@@ -10,7 +10,7 @@ namespace Ray
             : base(material, transformations, hatches)
         {
             if (material == null)
-                throw new ArgumentNullException("material");
+                throw new ArgumentNullException(nameof(material));
         }
 
         Vector CalculateNormal(Vector position)

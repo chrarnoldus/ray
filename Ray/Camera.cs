@@ -23,10 +23,10 @@ namespace Ray
         public Camera(Vector eye, Vector center, Vector up, int viewWidth, int viewHeight)
         {
             if (viewWidth < 0)
-                throw new ArgumentOutOfRangeException("viewWidth");
+                throw new ArgumentOutOfRangeException(nameof(viewWidth));
 
             if (viewHeight < 0)
-                throw new ArgumentOutOfRangeException("viewHeight");
+                throw new ArgumentOutOfRangeException(nameof(viewHeight));
 
             Eye = eye;
             Center = center;

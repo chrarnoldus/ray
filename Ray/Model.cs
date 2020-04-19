@@ -18,10 +18,10 @@ namespace Ray
             : base(transformations: transformations)
         {
             if (triangles == null)
-                throw new ArgumentNullException("triangles");
+                throw new ArgumentNullException(nameof(triangles));
 
             if (normalsPerTriangle == null)
-                throw new ArgumentNullException("normalsPerTriangle");
+                throw new ArgumentNullException(nameof(normalsPerTriangle));
 
             this.triangles = triangles.ToList().AsReadOnly();
             this.normalsPerTriangle = normalsPerTriangle.ToList().AsReadOnly();

@@ -31,14 +31,14 @@ namespace Ray
         public Hit(double time, Vector normal, Ray ray, Object obj, UV? textureCoordinates = null)
         {
             if (ray == null)
-                throw new ArgumentNullException("ray");
+                throw new ArgumentNullException(nameof(ray));
 
             Time = time;
             Normal = MakeNormalFaceEye(ray, normal);
             Position = ray.At(time);
 
             Ray = ray;
-            Object = obj ?? throw new ArgumentNullException("obj");
+            Object = obj ?? throw new ArgumentNullException(nameof(obj));
 
             if (obj.Material.IsTextured)
                 TextureCoordinates = textureCoordinates ?? obj.MapTexture(Position);

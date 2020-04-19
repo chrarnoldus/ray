@@ -8,7 +8,7 @@ namespace Ray
     {
         protected RenderMode(Scene scene)
         {
-            Scene = scene ?? throw new ArgumentNullException("scene");
+            Scene = scene ?? throw new ArgumentNullException(nameof(scene));
         }
 
         protected bool IsLightBlocked(Object obj, Light light, Vector position)

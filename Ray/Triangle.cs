@@ -11,7 +11,7 @@ namespace Ray
             : base(material, transformations, hatches)
         {
             if (material == null)
-                throw new ArgumentNullException("material");
+                throw new ArgumentNullException(nameof(material));
 
             VertexA = vertexA;
             VertexB = vertexB;
