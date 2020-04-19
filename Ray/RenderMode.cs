@@ -66,10 +66,9 @@ namespace Ray
         {
             Material material = hit.Object.Material;
 
-            if (material.IsTransparant)
+            if (material.IsTransparant(out var materialRefraction, out var materialReflectance))
             {
                 Vector rayDir = hit.Ray.Direction, normal = hit.Normal, position = hit.Position;
-                double refraction = material.Refraction;
 
                 Vector reflectDir = rayDir.Reflect(normal);
 
@@ -78,14 +77,14 @@ namespace Ray
 
                 if (rayDir.Dot(normal) < 0.0)
                 {
-                    transmissionDir = Refract(rayDir, normal, refraction).Value;
+                    transmissionDir = Refract(rayDir, normal, materialRefraction).Value;
                     incidence = -rayDir.Dot(normal);
                     intensity = 1.0;
                 }
                 else
                 {
                     intensity = Math.Exp(-hit.Time);
-                    transmissionDir = Refract(rayDir, -normal, 1.0 / refraction);
+                    transmissionDir = Refract(rayDir, -normal, 1.0 / materialRefraction);
 
                     if (transmissionDir.HasValue)
                         incidence = transmissionDir.Value.Dot(normal);
@@ -93,7 +92,7 @@ namespace Ray
                         return intensity * Scene.Retrace(hit, reflectDir, recursionDepth);
                 }
 
-                double reflectance = material.Reflectance + (1.0 - material.Reflectance) * Math.Pow(1.0 - incidence, 5.0);
+                double reflectance = materialReflectance + (1.0 - materialReflectance) * Math.Pow(1.0 - incidence, 5.0);
 
                 return intensity * (
                     reflectance * Scene.Retrace(hit, reflectDir, recursionDepth) +

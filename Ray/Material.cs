@@ -57,15 +57,12 @@ namespace Ray
 
         public int Shininess { get; }
 
-        public bool IsTransparant
-            => refraction.HasValue;
-
-        // TODO combine properties with IsTransparant
-        public double Refraction
-            => refraction!.Value;
-
-        public double Reflectance
-            => reflectance!.Value;
+        public bool IsTransparant(out double materialRefraction, out double materialReflectance)
+        {
+            materialRefraction = refraction ?? 0;
+            materialReflectance = reflectance ?? 0;
+            return refraction != null && reflectance != null;
+        }
 
         public bool IsTextured
             => texture != null;
