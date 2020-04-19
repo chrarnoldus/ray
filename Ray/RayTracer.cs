@@ -272,18 +272,7 @@ namespace Ray
 
         static void Main(string[] args)
         {
-#if !DEBUG
-            try
-            {
-#endif
-                Start(args);
-#if !DEBUG
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error: " + e.Message);
-            }
-#endif
+            Start(args);
         }
     }
 }
