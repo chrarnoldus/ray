@@ -252,7 +252,7 @@ namespace Ray
             Console.WriteLine("Done.");
         }
 
-        static void Start(string[] args)
+        static void Main(string[] args)
         {
             string name = Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().Location);
 
@@ -268,11 +268,6 @@ namespace Ray
             RayTracer rayTracer = new RayTracer();
             rayTracer.ReadScene(inputFileName);
             rayTracer.RenderToFile(outputFileName);
-        }
-
-        static void Main(string[] args)
-        {
-            Start(args);
         }
     }
 }
