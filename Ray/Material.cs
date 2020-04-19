@@ -1,4 +1,3 @@
-#nullable disable
 using System;
 
 namespace Ray
@@ -7,17 +6,17 @@ namespace Ray
     {
         readonly double? refraction, reflectance;
 
-        readonly Image texture;
+        readonly Image? texture;
 
         public Material(Vector color, double ambient, double diffuse, double specular, int shininess,
-            double? refraction = null, string textureName = null)
+            double? refraction = null, string? textureName = null)
             : this(ambient * color, diffuse * color, specular * Vector.AllOne, shininess, refraction, textureName)
         {
 
         }
 
         public Material(Vector ambientColor, Vector diffuseColor, Vector specularColor, int shininess,
-            double? refraction = null, string textureName = null)
+            double? refraction = null, string? textureName = null)
         {
             AmbientColor = ambientColor;
             DiffuseColor = diffuseColor;
@@ -61,11 +60,12 @@ namespace Ray
         public bool IsTransparant
             => refraction.HasValue;
 
+        // TODO combine properties with IsTransparant
         public double Refraction
-            => refraction.Value;
+            => refraction!.Value;
 
         public double Reflectance
-            => reflectance.Value;
+            => reflectance!.Value;
 
         public bool IsTextured
             => texture != null;
