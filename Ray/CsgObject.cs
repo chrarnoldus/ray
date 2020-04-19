@@ -1,4 +1,3 @@
-#nullable disable
 using System;
 using System.Collections.Generic;
 
@@ -24,7 +23,7 @@ namespace Ray
 
         readonly CsgOperator csgOperator;
 
-        public CsgObject(Object left, Object right, CsgOperator csgOperator, IEnumerable<Matrix> transformations = null)
+        public CsgObject(Object left, Object right, CsgOperator csgOperator, IEnumerable<Matrix>? transformations = null)
             : base(transformations: transformations)
         {
             this.left = left ?? throw new ArgumentNullException(nameof(left));
