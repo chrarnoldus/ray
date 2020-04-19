@@ -1,4 +1,3 @@
-#nullable disable
 using System;
 using System.Collections.Generic;
 
@@ -28,7 +27,7 @@ namespace Ray
         readonly double radius;
 
         public Sphere(Material material, Vector position = default(Vector), double radius = 1.0,
-            IEnumerable<Matrix> transformations = null, IEnumerable<Hatch> hatches = null)
+            IEnumerable<Matrix>? transformations = null, IEnumerable<Hatch>? hatches = null)
             : base(material, transformations, hatches)
         {
             if (material == null)
