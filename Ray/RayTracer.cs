@@ -228,7 +228,8 @@ namespace Ray
                 doc = stream.Documents[0].RootNode;
                 ParseScene();
             }
-            else Console.WriteLine("Warning: no YAML documents.");
+            else
+                Console.WriteLine("Warning: no YAML documents.");
 
             if (stream.Documents.Count > 1)
                 Console.WriteLine("Warning: unexpected YAML document, ignored.");
